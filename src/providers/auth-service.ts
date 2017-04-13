@@ -1,72 +1,64 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import { User } from '../models/user';
 
-export class User {
-  name : string;
-  email : string;
-
-  constructor(name: string, email: string ){
-    this.name = name;
-    this.email = email;
-  }
-}
 @Injectable()
 export class AuthService {
-    currentUser: User;
+    washUpApiUrl = 'http://localhost:8080/WashupApp';
+    flag: string;
+    statusCode: string;
 
-    // public login(credentials){
-    //   if (credentials.email === null || credentials.password === null){
-    //     return Observable.throw("Please insert credentials");
-    //   } else {
-    //     console.log('inside auth services login');
-    //     return Observable.create(observer => {
-    //       let access = (credentials.otp === "123456" && credentials.mobile === "9921409927");
-    //       this.currentUser = new User('Vijay', 'vijayrk1122@gmail.com');
-    //       observer.next(access);
-    //       observer.complete();
-    //     });
-    //   }
-    // }
+    constructor(public http: Http) {
+      console.log('Hello auth-services Provider');
+    }
 
-    public login(credentials){
-      console.log('inside auth-service');
-      if( credentials.otp === null){
-        return Observable.throw("Please insert credentials")
-      } else {
-        console.log('inside auth service login');
-        return Observable.create( observer => {
-          let access = (credentials.otp === "123456" );
-          this.currentUser = new User('Vijay', 'vijayrk1122@gmail.com');
-          observer.next(access);
-          observer.complete();
-        });
+    verifyMobile(mobileNo){
+      console.log('auth-services verify mobile'+mobileNo);       
+      return this.http.get(this.washUpApiUrl+"/validateUser/mobile/"+mobileNo)
+      .map(res => res.json.toString());
+    }
+
+    public authenticateUser( otp, mobile ){
+      var headers = new Headers();
+      headers.append("Accept", "application/json");
+      headers.append("Content-Type", "application/json");
+      let options = new RequestOptions({headers:headers});
+      let postParams = {
+        otp:otp,
+        mobile:mobile,
       }
-    }
+      this.http.post(this.washUpApiUrl+"/validateOtp", postParams, options).subscribe( data =>{
+        console.log(data['body']);
+        this.flag = data.toString();
+        console.log(this.flag);
+      })
+      return this.flag;
+    } 
 
-    public register(credentials){
-      if(credentials.mobile === null || credentials.otp === null){
-        return Observable.throw('Please insert credentials');
-      } else {
-        return Observable.create(observer => {
-          observer.next(true);
-          observer.complete();
-        });
+    public RegisterUser(register){
+      var headers = new Headers();
+      headers.append("Accept",'application/json');
+      headers.append('Content-Type','application/json');
+      let options = new RequestOptions({headers:headers});
+      let postParams = {
+        firstName:register.firstName,
+        lastName:register.lastName,
+        mobile:register.mobile,
       }
-    }
-    /**
-     * name
-     */
-    public getUserInfo(): User {
-      return this.currentUser;  
+      this.http.post("http://localhost:8080/WashupApp/addUser",postParams,options)
+      .subscribe(data =>{
+        this.statusCode = data.status.toString();
+        console.log(data['_body']);
+      },error =>{
+        console.log(error);
+      });
+      return this.statusCode;
     }
 
-    /**
-     * name
-     */
     public logout() {
       return Observable.create(observer =>{
-        this.currentUser = null;
         observer.next(true);
         observer.complete();
       });      
