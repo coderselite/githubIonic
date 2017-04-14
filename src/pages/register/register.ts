@@ -11,10 +11,12 @@ import { AuthService } from '../../providers/auth-service';
 export class RegisterPage {
 
   statusCode: string;
-
+  mobile: string;
   register = {firstName:'', lastName:'', mobile:'', email:'', referralCode: ''};
 
-  constructor(public nav: NavController, public navParams: NavParams, public http:Http, private auth : AuthService) {   }
+  constructor(public nav: NavController, public navParams: NavParams, public http:Http, private auth : AuthService) {
+    this.mobile = this.navParams.get('param1');
+  }
 
   public RegisterUser(){
     this.statusCode = this.auth.RegisterUser(this.register);
