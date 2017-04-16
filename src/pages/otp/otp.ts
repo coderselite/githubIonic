@@ -37,7 +37,9 @@ export class OtpPage {
         }else{
           setTimeout(()=>{
             this.loading.dismiss();
-            this.nav.setRoot( RegisterPage );
+            this.nav.setRoot( RegisterPage,{
+              param3:this.mobile
+            });
           });
         }              
       }else{

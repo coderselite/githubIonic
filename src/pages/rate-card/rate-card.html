@@ -5,10 +5,61 @@
     </button>
     <ion-title>Rate card</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  <h3>Rate card page</h3>
+  <div padding>
+    <ion-segment [(ngModel)]="category">
+      <ion-segment-button value="Men">
+        Men
+      </ion-segment-button>
+      <ion-segment-button value="Women">
+        Women
+      </ion-segment-button>
+      <ion-segment-button value="Other">
+        Other
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="category">
+    <ion-list *ngSwitchCase="'Men'" >
+      <ion-item *ngFor="let catalog of catalogForMen">
+        <div class="row">
+          <div class="col text-right">
+            <h2>{{ catalog.name }}</h2>
+          </div>
+          <div class="col text-right">
+            <h2>{{ catalog.rate }}</h2>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Women'">
+      <ion-item *ngFor="let catalog of catalogForWomen">
+        <div class="row">
+          <div class="col text-right">
+            <h2>{{ catalog.name }}</h2>
+          </div>
+          <div class="col text-right">
+            <h2>{{ catalog.rate }}</h2>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Other'">
+      <ion-item *ngFor="let catalog of catalogForOther">
+        <div class="row">
+          <div class="col text-right">
+            <h2>{{ catalog.name }}</h2>
+          </div>
+          <div class="col text-right">
+            <h2>{{ catalog.rate }}</h2>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

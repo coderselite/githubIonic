@@ -13,7 +13,13 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PlaceOrderPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  date = new Date();
+  myDate: String = new Date().toISOString();
+  myNextDate:String = new Date(this.date.getDate()+1).toISOString();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.myDate+" "+this.myNextDate+" "+this.date.getDate()+" "+this.date.getDay());
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlaceOrderPage');

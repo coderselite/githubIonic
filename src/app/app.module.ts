@@ -14,6 +14,7 @@ import { RateCardPage } from '../pages/rate-card/rate-card';
 import { TrackOrderPage } from '../pages/track-order/track-order';
 import { GithubUsers } from '../providers/github-users';
 import { AuthService } from '../providers/auth-service';
+import { CatalogService } from '../providers/catalog-service';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AuthService } from '../providers/auth-service';
   ],
   providers: [ 
     GithubUsers,
-    AuthService
+    AuthService,
+    CatalogService
   ]
 })
 export class AppModule {}
