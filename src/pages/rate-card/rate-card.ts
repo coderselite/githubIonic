@@ -28,6 +28,8 @@ export class RateCardPage {
         }          
         else if ( catalogs.length > 0 && catalogs[i].category == "Women")
           this.catalogForWomen.push(catalogs[i]);
+        else
+          this.catalogForOther.push(catalogs[i]);
       }
     })
   }

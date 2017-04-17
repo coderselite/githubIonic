@@ -11,12 +11,66 @@
 
 <ion-content padding>
   <h3>Place order page</h3>
-  <ion-item>    
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="MMM DD" [(ngModel)]="myDate"></ion-datetime>
-  </ion-item>
-  <ion-item>    
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="MMM DD" [(ngModel)]="myNextDate"></ion-datetime>
-  </ion-item>
+  <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+    <div class="row">
+      <ion-item>    
+        <ion-label>Pickup Date</ion-label>
+        <ion-datetime displayFormat="MMM DD" [(ngModel)]="myDate"></ion-datetime>
+      </ion-item>
+    </div>
+
+    <div class="row">
+      <ion-list radio-group [(ngModel)]="orderType">
+        <ion-label>Ordre Type</ion-label>
+        <div class="row">
+          <div class="col">
+            <ion-label>Regular</ion-label>
+            <ion-radio value="regular" checked></ion-radio>
+          </div>
+          <div class="col">
+            <ion-label>Express</ion-label>
+            <ion-radio value="express"></ion-radio>
+          </div>
+        </div>
+      </ion-list>
+    </div>
+
+    <div class="row">
+      <ion-list radio-group [(ngModel)]="timeSlot">
+        <ion-label>Time slot</ion-label>
+        <div class="row">
+          <div class="col">
+            <ion-label>08am-12am</ion-label>
+            <ion-radio value="08am-12am" checked></ion-radio>
+          </div>
+          <div class="col">
+            <ion-label>12am-04am</ion-label>
+            <ion-radio value="12am-04pm"></ion-radio>
+          </div>
+          <div class="col">
+            <ion-label>04am-08am</ion-label>
+            <ion-radio value="04pm-08pm"></ion-radio>
+          </div>
+        </div>
+      </ion-list>
+    </div>
+
+    <!--<div class="row">
+      <ion-item>
+        <ion-label>Catalog</ion-label>
+          <ion-select [(ngModel)]="catalogs" multiple="true">
+            <ion-option>Bacon</ion-option>
+            <ion-option>Black Olives</ion-option>
+            <ion-option>Extra Cheese</ion-option>
+            <ion-option>Mushrooms</ion-option>
+            <ion-option>Pepperoni</ion-option>
+            <ion-option>Sausage</ion-option>
+          </ion-select>
+      </ion-item>
+    </div>-->
+
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+
+  </form>
+      
 </ion-content>

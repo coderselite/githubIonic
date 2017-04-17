@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -33,9 +35,11 @@ import { CatalogService } from '../providers/catalog-service';
     TrackOrderPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    BrowserModule,
+    ReactiveFormsModule 
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [IonicApp, MyApp],
   entryComponents: [
     MyApp,
     HomePage,

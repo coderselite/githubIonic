@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
@@ -11,18 +12,52 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-place-order',
   templateUrl: 'place-order.html'
 })
-export class PlaceOrderPage {
+export class PlaceOrderPage implements OnInit {
 
-  date = new Date();
   myDate: String = new Date().toISOString();
-  myNextDate:String = new Date(this.date.getDate()+1).toISOString();
+  public myForm : FormGroup; 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.myDate+" "+this.myNextDate+" "+this.date.getDate()+" "+this.date.getDay());
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _fb : FormBuilder) { }
+
+  ngOnInit() {
+    // we will initialize our form here
+    this.myForm = this._fb.group({
+      myDate :[''],
+      orderType : [''],
+      timeSlot : [''],
+      addresses: this._fb.array([
+                this.initAddress(),
+            ])
+    });
   }
+
+  initAddress() {
+        // initialize our address
+        return this._fb.group({
+            street: ['', Validators.required],
+            postcode: ['']
+        });
+    }
+
+    addAddress() {
+      // add address to the list
+      const control = <FormArray>this.myForm.controls['addresses'];
+      control.push(this.initAddress());
+  }
+
+removeAddress(i: number) {
+    // remove address from the list
+    const control = <FormArray>this.myForm.controls['addresses'];
+    control.removeAt(i);
+}
+
+
+  // save(model: Customer) {
+  //     // call API to save customer
+  //     console.log(model);
+  // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlaceOrderPage');
   }
-
 }
