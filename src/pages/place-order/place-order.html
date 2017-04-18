@@ -9,18 +9,33 @@
 </ion-header>
 
 
-<ion-content padding>
-  <h3>Place order page</h3>
 
-    <div class="row">
+<body>
+  <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+
+    <div class="form-group">
+        <!--<label>Name</label>
+        <input type="text" formControlName="name">
+        <!--display error message if name is not valid-->
+        <!--<small *ngIf="!myForm.controls.name.valid" class="text-danger">
+            Name is required (minimum 5 characters).
+        </small>-->
+        <div class="row">
+          <ion-item>    
+            <ion-label>Pickup Date</ion-label>
+            <ion-datetime displayFormat="MMM DD" formControlName = "pickupDate"></ion-datetime>
+          </ion-item>
+        </div>
+    </div>
+    <!--<div class="row">
       <ion-item>    
         <ion-label>Pickup Date</ion-label>
         <ion-datetime displayFormat="MMM DD" [(ngModel)]="pickupDate"></ion-datetime>
       </ion-item>
-    </div>
+    </div>-->
 
-    <div class="row">
-      <ion-list radio-group [(ngModel)]="orderType">
+    <div class="row form-group" >
+      <ion-list radio-group type="text"  formControlName = "myForm.controls['orderTypes']">
         <ion-label>Ordre Type</ion-label>
         <div class="row">
           <div class="col">
@@ -36,7 +51,7 @@
     </div>
 
     <div class="row">
-      <ion-list radio-group [(ngModel)]="timeSlot">
+      <ion-list radio-group type="text" formControlName="timeSlot">
         <ion-label>Time slot</ion-label>
         <div class="row">
           <div class="col">
@@ -68,7 +83,165 @@
           </ion-select>
       </ion-item>
     </div>-->
+   
+
+    <div formArrayName="addresses">
+        <div *ngFor="let address of myForm.controls.addresses.controls; let i=index">
+            <div>
+                <span>Address {{i + 1}}</span>
+                <span *ngIf="myForm.controls.addresses.controls.length > 1" 
+                    (click)="removeAddress(i)">
+                </span>
+            </div>
+            <div [formGroupName]="i">                
+                <div>
+                    <label>street</label>
+                    <input type="text" formControlName="street">
+                   
+                    <small [hidden]="myForm.controls.addresses.controls[i].controls.street.valid">
+                        Street is required
+                    </small>
+                </div>                
+                <div>
+                    <label>postcode</label>
+                    <input type="text" formControlName="postcode">
+                </div>
+            </div>
+        </div>        
+        <div class="margin-20">
+          <a (click)="addAddress()" style="cursor: default">
+            Add another address +
+          </a>
+        </div>
+    </div>
+
+    <div formArrayName="catalogs">
+        <div *ngFor="let catalog of myForm.controls.catalogs.controls; let j=index">
+            <div>
+                <span>Catalog {{j + 1}}</span>
+                <span *ngIf="myForm.controls.catalogs.controls.length > 1" 
+                    (click)="removeCatalog(j)">
+                </span>
+            </div>
+            <div class="row">
+              <div class="col">
+                <ion-item>
+                  <ion-label>Catalog</ion-label>
+                    <ion-select formControlName="catalog_id">
+                      <ion-option value="1">Bacon</ion-option>
+                      <ion-option value="2">Black Olives</ion-option>
+                      <ion-option value="3">Extra Cheese</ion-option>
+                      <ion-option value="4">Mushrooms</ion-option>
+                      <ion-option value="5">Pepperoni</ion-option>
+                      <ion-option value="6">Sausage</ion-option>
+                    </ion-select>
+                </ion-item>
+              </div>
+              <div class="col">
+                <ion-item>
+                  <ion-label>Catalog</ion-label>
+                    <ion-select formControlName="quantity">
+                      <ion-option>1</ion-option>
+                      <ion-option>2</ion-option>
+                      <ion-option>3</ion-option>
+                      <ion-option>4</ion-option>
+                      <ion-option>5</ion-option>
+                      <ion-option>6</ion-option>
+                    </ion-select>
+                </ion-item>
+              </div>
+            </div>            
+        </div>        
+        <div class="margin-20">
+          <a (click)="addCatalog()" style="cursor: default">
+            Add another catalog +
+          </a>
+        </div>
+    </div>
+
+    <!--<div formArrayName="catalogs">
+      <div *ngFor="let catalog of ngForm.controls.catalogs.controls; let i=index">
+        <div>
+          <span> Catalog {{ i + 1 }}</span>
+          <span *ngIf="myform.controls.catalogs.controls.length > 1"
+              (click)="removeCatalog(i)">
+          </span>
+        </div>
+        <div [formGroupName] ="i">
+          <div>
+            <div class="row">
+              <div class="col">
+                <ion-item>
+                  <ion-label>Catalog</ion-label>
+                    <ion-select fprmControlName="catalog_id">
+                      <ion-option value="1">Bacon</ion-option>
+                      <ion-option value="2">Black Olives</ion-option>
+                      <ion-option value="3">Extra Cheese</ion-option>
+                      <ion-option value="4">Mushrooms</ion-option>
+                      <ion-option value="5">Pepperoni</ion-option>
+                      <ion-option value="6">Sausage</ion-option>
+                    </ion-select>
+                </ion-item>
+              </div>
+              <div class="col">
+                <ion-item>
+                  <ion-label>Catalog</ion-label>
+                    <ion-select fprmControlName="quantity">
+                      <ion-option>1</ion-option>
+                      <ion-option>2</ion-option>
+                      <ion-option>3</ion-option>
+                      <ion-option>4</ion-option>
+                      <ion-option>5</ion-option>
+                      <ion-option>6</ion-option>
+                    </ion-select>
+                </ion-item>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="margin-20">
+        <a (click)="addCatalog()" style="cursor: default">
+          Add another ITem +
+        </a>
+      </div>
+    </div>-->
+      <button type="submit" [disabled]="!myForm.valid">Submit</button>
 
 
-      
-</ion-content>
+      <!--<div formArrayName="addresses">
+        <div *ngFor="let address of myForm.controls.addresses.controls; let i=index">
+            
+            <div>
+                <span>Address {{i + 1}}</span>
+                <span *ngIf="myForm.controls.addresses.controls.length > 1" 
+                    (click)="removeAddress(i)">
+                </span>
+            </div>
+
+            
+            <div [formGroupName]="i">
+                
+                <div>
+                    <label>street</label>
+                    <input type="text" formControlName="street">
+                    
+                    <small [hidden]="myForm.controls.addresses.controls[i].controls.street.valid">
+                        Street is required
+                    </small>
+                </div>
+                
+                <div>
+                    <label>postcode</label>
+                    <input type="text" formControlName="postcode">
+                </div>
+            <div>
+        </div>
+    </div>
+    <div class="margin-20">
+          <a (click)="addAddress()" style="cursor: default">
+            Add another address +
+          </a>
+        </div>
+      <button type="submit" [disabled]="!myForm.valid">Submit</button>-->
+       
