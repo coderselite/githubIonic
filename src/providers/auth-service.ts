@@ -34,7 +34,7 @@ export class AuthService {
       return data.map(res=>res.text());
     } 
 
-    public RegisterUser(register){
+    registerUser(register){
       var headers = new Headers();
       headers.append("Accept",'application/json');
       headers.append('Content-Type','application/json');
@@ -48,6 +48,7 @@ export class AuthService {
       .subscribe(data =>{
         this.statusCode = data.status.toString();
         console.log(data['_body']);
+        return this.statusCode;
       },error =>{
         console.log(error);
       });

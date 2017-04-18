@@ -16,6 +16,9 @@ import { GithubUsers } from '../providers/github-users';
 import { AuthService } from '../providers/auth-service';
 import { CatalogService } from '../providers/catalog-service';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @NgModule({
   declarations: [
@@ -32,10 +35,15 @@ import { CatalogService } from '../providers/catalog-service';
     RateCardPage,
     TrackOrderPage
   ],
+
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp), 
+    BrowserModule, 
+    ReactiveFormsModule
   ],
+
   bootstrap: [IonicApp],
+  
   entryComponents: [
     MyApp,
     HomePage,
@@ -50,6 +58,7 @@ import { CatalogService } from '../providers/catalog-service';
     RateCardPage,
     TrackOrderPage
   ],
+
   providers: [ 
     GithubUsers,
     AuthService,

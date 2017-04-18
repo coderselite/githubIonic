@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { UsersPage } from '../users/users';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-register',
@@ -11,15 +12,19 @@ import { AuthService } from '../../providers/auth-service';
 export class RegisterPage {
 
   statusCode: string;
+  mobile : string;
 
   register = {firstName:'', lastName:'', mobile:'', email:'', referralCode: ''};
 
-  constructor(public nav: NavController, public navParams: NavParams, public http:Http, private auth : AuthService) {   }
+  constructor(public nav: NavController, public navParams: NavParams, public http:Http, private auth : AuthService) { 
+    this.mobile = this.navParams.get('param3');
+    this.register.mobile = this.navParams.get('param3');
+    }
 
-  public RegisterUser(){
-    this.statusCode = this.auth.RegisterUser(this.register);
-    console.log(this.statusCode);
-    this.nav.setRoot(UsersPage);
+  public registerUser(){
+    this.auth.registerUser(this.register);
+    
+    this.nav.setRoot(HomePage);
   }
 
   // postRequest(){
