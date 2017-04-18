@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CatalogService } from '../../providers/catalog-service';
-import { Catalog } from '../../models/Catalog';
+import { Catalog } from '../../models/catalog';
 
 @Component({
   selector: 'page-rate-card',

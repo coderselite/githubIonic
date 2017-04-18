@@ -1,63 +1,46 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { UsersPage } from '../users/users';
-import { HomePage } from '../home/home';
-import { OtpPage } from '../otp/otp';
 import { AuthService } from '../../providers/auth-service';
-import { User } from '../../models/user';
 
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
 })
 export class RegisterPage {
-  u : OtpPage;
-  loading : Loading;
+
   statusCode: string;
-  mobiles: string[];
+
   register = {firstName:'', lastName:'', mobile:'', email:'', referralCode: ''};
 
-  constructor(public nav: NavController, public navParams: NavParams, public http:Http, private auth : AuthService, private loadingCtrl : LoadingController, private alertCtrl: AlertController ) {
-    console.log(this.navParams.get('param3'));
-    this.register.mobile = this.navParams.get('param3');   
-  }
+  constructor(public nav: NavController, public navParams: NavParams, public http:Http, private auth : AuthService) {   }
 
-  public registerUser(){
-    this.showLoading();
+  public RegisterUser(){
     this.statusCode = this.auth.RegisterUser(this.register);
     console.log(this.statusCode);
-    if(this.statusCode == "200"){
-      setTimeout(()=>{
-            this.loading.dismiss();
-            this.nav.setRoot( HomePage );
-          });
-    } else {
-      setTimeout(()=>{
-            this.loading.dismiss();
-            this.showError("Try Again");
-          });
-    }
+    this.nav.setRoot(UsersPage);
   }
 
-  showLoading(){
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait ...'
-    });
-    this.loading.present();
-  }
+  // postRequest(){
+  //   var headers = new Headers();
+  //   headers.append("Accept",'application/json');
+  //   headers.append('Content-Type','application/json');
+  //   let options = new RequestOptions({headers:headers});
+  //   let postParams = {
+  //     firstName:this.register.firstName,
+  //     lastName:this.register.lastName,
+  //     mobile:this.register.mobile,
+  //   }
+  //   this.http.post("http://localhost:8080/WashupApp/addUser",postParams,options)
+  //   .subscribe(data =>{
+  //     console.log(data['_body']);
+  //   },error =>{
+  //     console.log(error);
+  //   });
 
-  showError(text){
-    setTimeout(()=>{
-      this.loading.dismiss();
-    });
-    let alert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present(prompt);
-  }
+  //   this.nav.setRoot(UsersPage);
+  // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');

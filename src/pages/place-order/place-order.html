@@ -11,11 +11,11 @@
 
 <ion-content padding>
   <h3>Place order page</h3>
-  <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+
     <div class="row">
       <ion-item>    
         <ion-label>Pickup Date</ion-label>
-        <ion-datetime displayFormat="MMM DD" [(ngModel)]="myDate"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD" [(ngModel)]="pickupDate"></ion-datetime>
       </ion-item>
     </div>
 
@@ -69,8 +69,6 @@
       </ion-item>
     </div>-->
 
-    <button type="submit" [disabled]="!myForm.valid">Submit</button>
 
-  </form>
       
 </ion-content>

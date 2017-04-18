@@ -47,12 +47,11 @@ export class AuthService {
       this.http.post("http://localhost:8080/WashupApp/addUser",postParams,options)
       .subscribe(data =>{
         this.statusCode = data.status.toString();
-        console.log(data['_body']+" "+this.statusCode);
-        return this.statusCode;
+        console.log(data['_body']);
       },error =>{
         console.log(error);
       });
-      return null;
+      return this.statusCode;
     }
 
     public logout() {

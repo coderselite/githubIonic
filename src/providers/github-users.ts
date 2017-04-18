@@ -17,4 +17,5 @@ export class GithubUsers {
     return this.http.get(`${this.githubApiUrl}/getAllUsers`)
     .map(res => <User[]>res.json());
   }
+
 }

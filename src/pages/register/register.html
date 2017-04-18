@@ -8,18 +8,18 @@
 
 <ion-content class="login-content" padding>
   <div class="register-box">
-    <form (ngSubmit)="registerUser()" #registerForm="ngForm">
+    <form (ngSubmit)="postRequest()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input type="text" placeholder="First Name" name="firstName" [(ngModel)]="register.firstName" required>test</ion-input>
+              <ion-input type="text" placeholder="First Name" name="firstName" [(ngModel)]="register.firstName" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="register.lastName" required></ion-input>
             </ion-item>
             <ion-item>
-              <h2>{{register.mobile}}</h2>
+              <ion-input type="text" placeholder="Mobile No." name="mobile" [(ngModel)]="register.mobile" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-input type="email" placeholder="Email" name="Email" [(ngModel)]="register.email" required></ion-input>
