@@ -32,7 +32,9 @@ export class OtpPage {
         if(this.userType == "Registered User"){
           setTimeout(()=>{
             this.loading.dismiss();
-            this.nav.setRoot( HomePage );
+            this.nav.setRoot( HomePage, {
+              param4: this.mobile
+            } );
           });
         }else{
           setTimeout(()=>{

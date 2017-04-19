@@ -35,7 +35,7 @@
     </div>-->
 
     <div class="row form-group" >
-      <ion-list radio-group type="text"  formControlName = "myForm.controls['orderTypes']">
+      <ion-list radio-group type="text"  formControlName = "orderType">
         <ion-label>Ordre Type</ion-label>
         <div class="row">
           <div class="col">
@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div formArrayName="catalogs">
+    <!--<div formArrayName="catalogs">
         <div *ngFor="let catalog of myForm.controls.catalogs.controls; let j=index">
             <div>
                 <span>Catalog {{j + 1}}</span>
@@ -157,7 +157,7 @@
             Add another catalog +
           </a>
         </div>
-    </div>
+    </div>-->
 
     <!--<div formArrayName="catalogs">
       <div *ngFor="let catalog of ngForm.controls.catalogs.controls; let i=index">

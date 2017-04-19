@@ -15,6 +15,7 @@ import { TrackOrderPage } from '../pages/track-order/track-order';
 import { GithubUsers } from '../providers/github-users';
 import { AuthService } from '../providers/auth-service';
 import { CatalogService } from '../providers/catalog-service';
+import { AddressPage } from '../pages/address/address';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,7 +34,8 @@ import { BrowserModule } from '@angular/platform-browser';
     PlaceOrderPage,
     AboutUsPage,
     RateCardPage,
-    TrackOrderPage
+    TrackOrderPage,
+    AddressPage
   ],
 
   imports: [
@@ -56,7 +58,8 @@ import { BrowserModule } from '@angular/platform-browser';
     PlaceOrderPage,
     AboutUsPage,
     RateCardPage,
-    TrackOrderPage
+    TrackOrderPage,
+    AddressPage
   ],
 
   providers: [ 

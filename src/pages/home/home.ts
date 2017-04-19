@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/*
-  Generated class for the Home page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import { User } from '../../models/user';
+import { AuthService } from '../../providers/auth-service';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public user: User;
+  public user_id: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService) {
+    this.auth.getUserDetails(this.navParams.get('param4')).subscribe( user =>{
+      this.user = user;
+      this.user_id = user.userId;
+    })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');

@@ -16,7 +16,6 @@ import { Order } from '../../models/order';
 export class PlaceOrderPage implements OnInit{
 
   public myForm: FormGroup;
-  public pickupdate : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _fb: FormBuilder) {
   }

@@ -34,6 +34,11 @@ export class AuthService {
       return data.map(res=>res.text());
     } 
 
+    getUserDetails(mobile):Observable <User>{
+      return this.http.get(this.washUpApiUrl+"/getUser/mobile/"+mobile)
+      .map(res => res.json());
+    }
+
     registerUser(register){
       var headers = new Headers();
       headers.append("Accept",'application/json');
