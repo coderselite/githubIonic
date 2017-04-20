@@ -24,17 +24,18 @@ export class OtpPage {
   public verify() {
     this.mobile = this.navParams.get('param1');
     this.userType = this.navParams.get('param2');
+   
     console.log("otp userTypr = "+this.userType);
+    console.log(sessionStorage.getItem("mobile")+" This is a session object");
     this.showLoading();
     this.auth.authenticateUser(this.userOtp.otp, this.mobile).subscribe(flag=>{
       console.log("otp flag = "+flag);
       if(flag == "true"){
         if(this.userType == "Registered User"){
+          this.getUserDetails();
           setTimeout(()=>{
             this.loading.dismiss();
-            this.nav.setRoot( HomePage, {
-              param4: this.mobile
-            } );
+            this.nav.setRoot( HomePage );
           });
         }else{
           setTimeout(()=>{
@@ -48,6 +49,16 @@ export class OtpPage {
           this.showError('Access denied');
       }
     })           
+  }
+
+  getUserDetails(){
+    this.auth.getUserDetails(this.mobile).subscribe(user =>{
+      this.user = user; 
+      console.log(user);
+      sessionStorage.setItem("user", JSON.stringify(user));
+      console.log(JSON.parse(sessionStorage.getItem("user"))["id"]+" testing...");
+    })
+    
   }
 
   showLoading(){
@@ -70,9 +81,9 @@ export class OtpPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log('ionViewDidLoad LoginPage');    
   }
-}
+} 
 
 
 //----------------------------------------------------
@@ -109,4 +120,4 @@ export class OtpPage {
     //     }, 
     //     error =>{
     //         this.showError(error);              
-    //     });
+        // });

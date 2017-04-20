@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserAddress } from '../../models/address';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-address',
@@ -11,9 +10,8 @@ import { HomePage } from '../home/home';
 export class AddressPage implements OnInit {
 
 
- public myAddressForm : FormGroup;
- home: HomePage;
- 
+ public myAddressForm : FormGroup; 
+ userAddress: UserAddress;
 
  constructor(public navCtrl: NavController, public navParams: NavParams, private addressFormBuilder : FormBuilder) {
  }
@@ -47,7 +45,7 @@ export class AddressPage implements OnInit {
  }
 
  save(model: UserAddress){
-   console.log(model);
+   console.log(model.addresses.toString());
  }
 
   ionViewDidLoad() {

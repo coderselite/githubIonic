@@ -8,17 +8,12 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class HomePage {
 
-  public user: User;
-  public user_id: string;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService) {
-    this.auth.getUserDetails(this.navParams.get('param4')).subscribe( user =>{
-      this.user = user;
-      this.user_id = user.userId;
-    })
+    
   }
 
   ionViewDidLoad() {
+    console.log(JSON.parse(sessionStorage.getItem("user"))["id"]+" testing...HomePage");
     console.log('ionViewDidLoad HomePage');
   }
 

@@ -14,9 +14,11 @@ export class LoginPage {
   loading: Loading; 
   userType : string; 
 
-  constructor(private nav: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private auth : AuthService) {  }
+  constructor(private nav: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private auth : AuthService) {}
 
   public login(){
+    sessionStorage.clear();
+    sessionStorage.setItem("mobile", this.loginCredentials.mobile);
     this.auth.verifyMobile(this.loginCredentials.mobile).subscribe(userType=>{
       this.userType = userType;
       console.log(this.userType+" test1");
