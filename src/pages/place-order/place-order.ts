@@ -16,10 +16,8 @@ import { Order } from '../../models/order';
 export class PlaceOrderPage implements OnInit{
 
   public myForm: FormGroup;
-  //public ordertype : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _fb: FormBuilder) {
-    //this.ordertype = this.myForm.controls['orderType'];
   }
 
   ngOnInit() {
@@ -35,7 +33,6 @@ export class PlaceOrderPage implements OnInit{
               this.initCatalog(),
             ])
         });
-        //console.log(this.myForm.controls._fb.value);
     }
 
     initAddress() {

@@ -1,8 +1,7 @@
 export interface User{
-    userId: string;
+    id: Number;
     firstName: string;
     lastName: string;
     mobile: string;
-    email: string;
     referralCode: string;
 }

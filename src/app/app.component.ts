@@ -13,6 +13,7 @@ import { TrackOrderPage} from '../pages/track-order/track-order';
 import { RateCardPage } from '../pages/rate-card/rate-card';
 import { PlaceOrderPage } from '../pages/place-order/place-order';
 import { AboutUsPage } from '../pages/about-us/about-us';
+import { AddressPage } from '../pages/address/address';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,14 +36,13 @@ export class MyApp {
       { title: 'Users', component: UsersPage },
       { title: 'Repos', component: ReposPage },
       { title: 'Organisations', component: OrganisationsPage },
-      { title: 'About us', component: AboutUsPage}
+      { title: 'About us', component: AboutUsPage},
+      { title: 'My Address', component: AddressPage}
     ];
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.show();  
     });

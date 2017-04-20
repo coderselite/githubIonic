@@ -13,18 +13,26 @@
 <body>
   <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
 
-    <!--<div class="form-group">
-        <div class="row">   
+    <div class="form-group">
+        <!--<label>Name</label>
+        <input type="text" formControlName="name">
+        <!--display error message if name is not valid-->
+        <!--<small *ngIf="!myForm.controls.name.valid" class="text-danger">
+            Name is required (minimum 5 characters).
+        </small>-->
+        <div class="row">
+          <ion-item>    
             <ion-label>Pickup Date</ion-label>
             <ion-datetime displayFormat="MMM DD" formControlName = "pickupDate"></ion-datetime>
+          </ion-item>
         </div>
-    </div>-->
-    <div class="row">
+    </div>
+    <!--<div class="row">
       <ion-item>    
         <ion-label>Pickup Date</ion-label>
-        <ion-datetime displayFormat="MMM DD" formControlName="pickupDate"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD" [(ngModel)]="pickupDate"></ion-datetime>
       </ion-item>
-    </div>
+    </div>-->
 
     <div class="row form-group" >
       <ion-list radio-group type="text"  formControlName = "orderType">
@@ -75,20 +83,6 @@
           </ion-select>
       </ion-item>
     </div>-->
-
-    <div>
-    <ion-item>
-      <ion-label>Catalog</ion-label>
-        <ion-select >
-          <ion-option value="1">Bacon</ion-option>
-          <ion-option value="2">Black Olives</ion-option>
-          <ion-option value="3">Extra Cheese</ion-option>
-          <ion-option value="4">Mushrooms</ion-option>
-          <ion-option value="5">Pepperoni</ion-option>
-          <ion-option value="6">Sausage</ion-option>
-        </ion-select>
-    </ion-item>
-    </div>
    
 
     <div formArrayName="addresses">
@@ -112,7 +106,6 @@
                     <label>postcode</label>
                     <input type="text" formControlName="postcode">
                 </div>
-                
             </div>
         </div>        
         <div class="margin-20">

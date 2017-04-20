@@ -1,0 +1,75 @@
+<ion-header class="header">
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Address</ion-title>
+  </ion-navbar>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  
+  
+</ion-header>
+
+<ion-content padding>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="margin-20">
+            <h4>Add Address</h4>
+          </div>
+          <form [formGroup]="myAddressForm" novalidate (ngSubmit)="save(myAddressForm)">
+            <div formArrayName="addresses">
+                <div *ngFor="let address of myAddressForm.controls.addresses.controls; let i=index" class="panel panel-default">
+                    <div>
+                        <span>Address {{i + 1}}</span>
+                        <span class="glyphicon glyphicon-remove pull-right" *ngIf="myAddressForm.controls.addresses.controls.length > 1" (click)="removeAddress(i)"></span>
+                    </div>
+                    <div [formGroupName]="i" class="panel-body">                
+                        <div class="form-group col-xs-6">
+                            <label>Building</label>
+                            <input type="text" class="form-control" formControlName="building">
+                            
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Society</label>
+                            <input type="text" class="form-control" formControlName="society">
+                            
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Area</label>
+                            <input type="text" class="form-control" formControlName="area">
+                            
+                        </div>                
+                        <div class="form-group col-xs-6">
+                            <label>City</label>
+                            <input type="text" class="form-control" formControlName="city">
+                            
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Past Code</label>
+                            <input type="text" class="form-control" formControlName="postCode">
+                            
+                        </div>
+                    </div>
+                </div>        
+                <div class="margin-20">
+                  <a (click)="addAddress()" style="cursor: default">
+                    Add another address +
+                  </a>
+                </div>
+                <div class="margin-20">
+                  <button type="submit" class="btn btn-primary pull-right" [disabled]="!myAddressForm.valid">Submit</button>
+                </div>
+  
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+</ion-content>
