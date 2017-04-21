@@ -1,52 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserAddress } from '../../models/address';
-import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { AddressService } from '../../providers/address-service';
 
 @Component({
   selector: 'page-address',
   templateUrl: 'address.html'
 })
-export class AddressPage implements OnInit {
+export class AddressPage {
+  
+  addressObj: UserAddress;
+  address = { building:'', society:'', landmark:'', city:'', postcode:''};
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private addressService: AddressService ) {}
 
- public myAddressForm : FormGroup; 
- userAddress: UserAddress;
-
- constructor(public navCtrl: NavController, public navParams: NavParams, private addressFormBuilder : FormBuilder) {
- }
-
- ngOnInit(){
-   this.myAddressForm = this.addressFormBuilder.group({
-     addresses: this.addressFormBuilder.array([
-       this.initAddress(),
-     ])
-   });
- }
-
- initAddress(){
-   return this.addressFormBuilder.group({
-     building:['', Validators.required],
-     society: ['', Validators.required],
-     area: ['', Validators.required],
-     city: ['', Validators.required],
-     postCode: ['', Validators.required]
-   })
- }
-
- addAddress(){
-   const control = <FormArray>this.myAddressForm.controls['addresses'];
-   control.push(this.initAddress());
- }
-
- removeAddress(i: number){
-   const control = <FormArray>this.myAddressForm.controls['addresses'];
-   control.removeAt(i);
- }
-
- save(model: UserAddress){
-   console.log(model.addresses.toString());
- }
+  addUserAddress(){
+    console.log(this.address.building+" inside address...test 1");
+    this.addressObj.address = this.address.building
+                          +this.address.society
+                          +this.address.landmark
+                          +this.address.city
+                          +this.address.postcode;
+    this.addressObj.address_type = "Permanant";
+    this.addressObj.user_id = JSON.parse(sessionStorage.getItem("user"))["id"];
+    console.log("inside address...test 2");
+    this.addressService.addUserAddress(this.addressObj);
+    console.log("inside address...test 5");
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddressPage');

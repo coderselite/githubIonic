@@ -12,10 +12,12 @@ import { PlaceOrderPage } from '../pages/place-order/place-order';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { RateCardPage } from '../pages/rate-card/rate-card';
 import { TrackOrderPage } from '../pages/track-order/track-order';
+import { AddressPage } from '../pages/address/address';
+
 import { GithubUsers } from '../providers/github-users';
 import { AuthService } from '../providers/auth-service';
 import { CatalogService } from '../providers/catalog-service';
-import { AddressPage } from '../pages/address/address';
+import { AddressService } from '../providers/address-service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -65,7 +67,8 @@ import { BrowserModule } from '@angular/platform-browser';
   providers: [ 
     GithubUsers,
     AuthService,
-    CatalogService
+    CatalogService,
+    AddressService
   ]
 })
 export class AppModule {}

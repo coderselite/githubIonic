@@ -52,9 +52,7 @@ export class AuthService {
       }
       this.http.post("http://localhost:8080/WashupApp/addUser",postParams,options)
       .subscribe(data =>{
-        this.statusCode = data.status.toString();
-        console.log(data['_body']);
-        return this.statusCode;
+        return data.status.toString();
       },error =>{
         console.log(error);
       });
