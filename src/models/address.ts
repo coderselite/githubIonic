@@ -1,6 +1,6 @@
 export interface UserAddress{
     address_id: number;
-    address: string;
+    address_details: string;
     address_type: string;
     user_id: number;
 }

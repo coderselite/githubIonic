@@ -14,16 +14,16 @@ export class AddressService {
     console.log('Hello AddressService Provider');
   }
 
-  addUserAddress(addressObj){
+  addUserAddress(addressString, addressType, userId){ 
     console.log("inside address...test 4");
     var headers = new Headers();
     headers.append("Accept",'application/json');
     headers.append('Content-Type','application/json');
     let options = new RequestOptions({headers:headers});
     let postParams = {
-      address: addressObj.address,
-      address_type: addressObj.address_type,
-      user_id: addressObj.user_id,
+      address: addressString,
+      address_type: addressType,
+      user_id: userId,
     }
     this.http.post(this.washUpApiUrl+"/addAddress",postParams, options)
       .subscribe(data =>{
@@ -33,7 +33,9 @@ export class AddressService {
         console.log(error);
       });
       return this.statusCode;
-  }
+  }  
 
-  
+  getAllAddressesOfUser(userId):Observable <UserAddress[]>{
+    return this.http.get(this.washUpApiUrl+"/getAddress/userid/"+userId).map(res => <UserAddress[]>res.json());
+  }
 }

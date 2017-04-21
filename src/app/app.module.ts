@@ -13,6 +13,7 @@ import { AboutUsPage } from '../pages/about-us/about-us';
 import { RateCardPage } from '../pages/rate-card/rate-card';
 import { TrackOrderPage } from '../pages/track-order/track-order';
 import { AddressPage } from '../pages/address/address';
+import { AddresslistPage } from '../pages/addresslist/addresslist';
 
 import { GithubUsers } from '../providers/github-users';
 import { AuthService } from '../providers/auth-service';
@@ -37,7 +38,8 @@ import { BrowserModule } from '@angular/platform-browser';
     AboutUsPage,
     RateCardPage,
     TrackOrderPage,
-    AddressPage
+    AddressPage,
+    AddresslistPage
   ],
 
   imports: [
@@ -61,7 +63,8 @@ import { BrowserModule } from '@angular/platform-browser';
     AboutUsPage,
     RateCardPage,
     TrackOrderPage,
-    AddressPage
+    AddressPage,
+    AddresslistPage
   ],
 
   providers: [ 

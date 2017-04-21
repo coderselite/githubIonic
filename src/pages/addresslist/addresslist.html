@@ -1,0 +1,20 @@
+<script src="cordova.js"></script>
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>MyAddress</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+  <ion-content padding>
+    <ion-item class="row" *ngFor="let userAddress of addresses">
+      <div class="col overflow-me">
+        {{ userAddress.address }}
+      </div>
+    </ion-item> 
+</ion-content>

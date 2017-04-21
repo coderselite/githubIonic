@@ -14,6 +14,7 @@ import { RateCardPage } from '../pages/rate-card/rate-card';
 import { PlaceOrderPage } from '../pages/place-order/place-order';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { AddressPage } from '../pages/address/address';
+import { AddresslistPage } from '../pages/addresslist/addresslist';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,7 +38,8 @@ export class MyApp {
       { title: 'Repos', component: ReposPage },
       { title: 'Organisations', component: OrganisationsPage },
       { title: 'About us', component: AboutUsPage},
-      { title: 'My Address', component: AddressPage}
+      { title: 'Add Address', component: AddressPage},
+      { title: 'My Address', component: AddresslistPage}
     ];
   }
 
