@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AddressService } from '../../providers/address-service';
+import { AddresslistPage} from '../addresslist/addresslist';
 
 @Component({
   selector: 'page-address',
@@ -26,6 +27,7 @@ export class AddressPage {
     this.user_id = JSON.parse(sessionStorage.getItem("user"))["id"];
     console.log("inside address...test 2");
     this.addressService.addUserAddress(this.addressString, this.address_type, this.user_id);
+    this.navCtrl.setRoot(AddresslistPage);
     console.log("inside address...test 5");
   }
 

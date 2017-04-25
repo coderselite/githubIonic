@@ -15,68 +15,39 @@ import { Order } from '../../models/order';
 })
 export class PlaceOrderPage implements OnInit{
 
-  public myForm: FormGroup;
+  public placeOrderForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private placeOrderFormBuilder: FormBuilder) {
   }
 
-  ngOnInit() {
-    // we will initialize our form here
-    this.myForm = this._fb.group({
-            pickupDate: [''],
-            orderType: [''],
-            timeSlot: [''],
-            addresses: this._fb.array([
-                this.initAddress(),
-            ]),
-            catalogs : this._fb.array([
-              this.initCatalog(),
-            ])
-        });
-    }
+   ngOnInit(){
+   this.placeOrderForm = this.placeOrderFormBuilder.group({
+     catalogs: this.placeOrderFormBuilder.array([
+       this.initCatalog(),
+     ])
+   });
+ }
 
-    initAddress() {
-        // initialize our address
-        return this._fb.group({
-            street: ['', Validators.required],
-            postcode: ['']
-        });
-    }
+ initCatalog(){
+   return this.placeOrderFormBuilder.group({
+     catalog_id:['', Validators.required],
+     quantity: ['', Validators.required]
+   })
+ }
 
-    initCatalog(){
-      return this._fb.group({
-        catalog_id : [''],
-        quantity : ['']
-      });
-    }
+ addCatalog(){
+   const control = <FormArray>this.placeOrderForm.controls['catalogs'];
+   control.push(this.initCatalog());
+ }
 
-    addAddress() {
-        // add address to the list
-        const control = <FormArray>this.myForm.controls['addresses'];
-        control.push(this.initAddress());
-    }
+ removeCatalog(i: number){
+   const control = <FormArray>this.placeOrderForm.controls['catalogs'];
+   control.removeAt(i);
+ }
 
-    addCatalog(){
-      const control = <FormArray>this.myForm.controls['catalogs'];
-      control.push(this.initCatalog());
-    }
-
-    removeAddress(i: number) {
-        // remove address from the list
-        const control = <FormArray>this.myForm.controls['addresses'];
-        control.removeAt(i);
-    }
-
-    removeCatalog(i: number) {
-        // remove address from the list
-        const control = <FormArray>this.myForm.controls['catalogs'];
-        control.removeAt(i);
-    }
-
-    save(model: Order) {
-        // call API to save customer
-        console.log(model);
-    }
+ save(model: Order){
+   console.log(model.catalogs.toString());
+ }
 
     ionViewDidLoad() {
       console.log('ionViewDidLoad PlaceOrderPage');

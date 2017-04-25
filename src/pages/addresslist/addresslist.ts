@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AddressService} from '../../providers/address-service';
 import { UserAddress } from '../../models/address';
+import { AddressPage } from '../address/address';
 
 @Component({
   selector: 'page-addresslist',
@@ -16,6 +17,10 @@ export class AddresslistPage {
       this.addresses = addresses;
       console.log(addresses.toString());
     });
+  }
+
+  addAddress(){
+    this.navCtrl.setRoot(AddressPage);
   }
 
   ionViewDidLoad() {
