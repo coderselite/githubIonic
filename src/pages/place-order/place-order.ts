@@ -22,6 +22,12 @@ export class PlaceOrderPage implements OnInit{
 
    ngOnInit(){
    this.placeOrderForm = this.placeOrderFormBuilder.group({
+     orderType: ['', Validators.required],
+     pickupDate: ['', Validators.required],     
+     pickupTime: ['', Validators.required],
+     deliveryDate: ['', Validators.required],     
+     deliveryTime: ['', Validators.required],
+     promocode: ['', Validators.required],
      catalogs: this.placeOrderFormBuilder.array([
        this.initCatalog(),
      ])
