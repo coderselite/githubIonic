@@ -25,18 +25,14 @@
                         <span class="glyphicon glyphicon-remove pull-right" *ngIf="placeOrderForm.controls.catalogs.controls.length > 1" (click)="removeCatalog(i)"></span>
                     </div>
                     <div>
-                      <div [formGroupName]="i" class="panel-body">                
-                          <div class="form-group col-xs-6">
+                      <div [formGroupName]="i" class=" row panel-body">                
+                          <div class="form-group col-xs-12">
                               <label>Catalog</label>
                               <ion-select class="form-control" formControlName="catalog_id">
-                                <ion-option checked=”true” value = “Ash”>Ash</ion-option>
-                                <ion-option value = “Bay”>Bay</ion-option>
-                                <ion-option value = “Beech”>Beech</ion-option>
-                                <ion-option value = “Cedar”>Cedar</ion-option>
-                                <ion-option value = “Redwood”>Redwood</ion-option>
+                                <ion-option *ngFor="let catalog of catalogs" ng-value= catalog.id > {{ catalog.name }} </ion-option>
                               </ion-select>                            
                           </div>
-                          <div class="form-group col-xs-6">
+                          <div class="form-group col-xs-4">
                               <label>Quantity</label>
                               <input type="text" class="form-control" formControlName="quantity">                            
                           </div>

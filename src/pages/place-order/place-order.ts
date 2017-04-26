@@ -2,13 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Order } from '../../models/order';
+import { CatalogService } from '../../providers/catalog-service';
+import { Catalog } from '../../models/catalog';
 
-/*
-  Generated class for the PlaceOrder page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-place-order',
   templateUrl: 'place-order.html'
@@ -16,8 +12,12 @@ import { Order } from '../../models/order';
 export class PlaceOrderPage implements OnInit{
 
   public placeOrderForm: FormGroup;
+  catalogs: Catalog[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private placeOrderFormBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private catalogService: CatalogService, private placeOrderFormBuilder: FormBuilder) {
+    catalogService.getAllCatalogs().subscribe(catalogs =>{
+      this.catalogs = catalogs;
+    })
   }
 
    ngOnInit(){
