@@ -6,21 +6,48 @@
     </button>
     <ion-title>MyAddress</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 
   <ion-content padding>
-    <ion-item class="row" *ngFor="let userAddress of addresses">
-      <div class="col overflow-me">
-        {{ userAddress.address }}
-      </div>
-    </ion-item> 
+    
+          <button onclick="SelectedAddress()">
+            <ion-card *ngFor="let userAddress of addresses">
+              <ion-card-content >
+                {{ userAddress.address }}
+              </ion-card-content>
+            </ion-card>
+          </button>
+          <!--<ion-row>
+            <ion-col class="signup-col">
+              <button ion-button class="submit-btn " full type="submit" (click)="addAddress()">ADD ADDRESS</button>
+            </ion-col>
+          </ion-row>-->
+
+    <!--<button>
+      <ion-card *ngFor="let userAddress of addresses">
+        <ion-card-content [(ngModel)]="selectedAddress">
+          {{ userAddress.address }}
+        </ion-card-content>
+      </ion-card>
+    </button>
     <ion-row>
       <ion-col class="signup-col">
-        <button ion-button class="submit-btn" full type="submit" (click)="addAddress()">ADD ADDRESS</button>
-        <!--<button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>-->
+        <button ion-button class="submit-btn " full type="submit" (click)="addAddress()">ADD ADDRESS</button>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
 </ion-content>
+
+<!--<ion-list radio-group inset >
+            <ion-item *ngFor="let userAddress of addresses" >
+              <ion-label>
+                <ion-card >
+                  <ion-card-content >
+                    {{ userAddress.address }}
+                  </ion-card-content>
+                </ion-card>
+              </ion-label>
+              <ion-radio value= userAddress.address ></ion-radio>              
+            </ion-item>
+          </ion-list>-->

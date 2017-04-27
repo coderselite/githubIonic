@@ -1,16 +1,21 @@
 page-addresslist {
-    .overflow-me{
-    overflow: hidden;
-    text-overflow: ellipsis;
-   }
-
-   ion-item {
-         border-radius: 30px !important;
-         padding-left: 30px !important;
-         font-size: 0.9em;
-         margin-bottom: 10px;
-         border: 1px solid #ffffff;
-         border-bottom: 0px !important;
-         box-shadow: none !important;
-     }
+    body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.padding_30px {
+  padding:30px;
+  text-align:center;
+}
+.large_button {
+  line-height: 20vh !important;
+    width: 100%;
+  }
+.small_button{
+    line-height: 5px !important;
+    min-height: 24px !important;
+}
+.icon_custom {
+  font-size:40px;
+  padding:10px;
+}
 }

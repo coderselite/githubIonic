@@ -11,6 +11,7 @@ import { AddressPage } from '../address/address';
 export class AddresslistPage {
 
   addresses: UserAddress[];
+ addressList = { selectedAddress: ''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private addressService: AddressService) {
     addressService.getAllAddressesOfUser(JSON.parse(sessionStorage.getItem("user"))["id"]).subscribe(addresses =>{
@@ -21,6 +22,11 @@ export class AddresslistPage {
 
   addAddress(){
     this.navCtrl.setRoot(AddressPage);
+  }
+
+  SelectedAddress(){
+      console.log(this.addressList.selectedAddress+" is the selected address");
+      this.navCtrl.setRoot(AddressPage);
   }
 
   ionViewDidLoad() {
