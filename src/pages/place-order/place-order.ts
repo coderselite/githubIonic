@@ -4,6 +4,7 @@ import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Order } from '../../models/order';
 import { CatalogService } from '../../providers/catalog-service';
 import { Catalog } from '../../models/catalog';
+import { AddresslistPage } from '../addresslist/addresslist';
 
 @Component({
   selector: 'page-place-order',
@@ -13,8 +14,10 @@ export class PlaceOrderPage implements OnInit{
 
   public placeOrderForm: FormGroup;
   catalogs: Catalog[];
+  addressDetails: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private catalogService: CatalogService, private placeOrderFormBuilder: FormBuilder) {
+    this.addressDetails = this.navParams.get("Param3");
     catalogService.getAllCatalogs().subscribe(catalogs =>{
       this.catalogs = catalogs;
     })
@@ -52,10 +55,14 @@ export class PlaceOrderPage implements OnInit{
  }
 
  save(model: Order){
-   console.log(model.catalogs.toString());
+  //  console.log(model.catalogs.toString());
  }
 
-    ionViewDidLoad() {
-      console.log('ionViewDidLoad PlaceOrderPage');
-    }
+ public addAddress(){
+    this.navCtrl.setRoot(AddresslistPage);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PlaceOrderPage');
+  }
 }

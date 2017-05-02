@@ -31,6 +31,10 @@ export class AddressPage {
     console.log("inside address...test 5");
   }
 
+  backToAddressList(){
+    this.navCtrl.setRoot(AddresslistPage);
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddressPage');
   }

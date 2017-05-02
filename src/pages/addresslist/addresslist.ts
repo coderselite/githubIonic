@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AddressService} from '../../providers/address-service';
 import { UserAddress } from '../../models/address';
 import { AddressPage } from '../address/address';
+import { PlaceOrderPage } from '../place-order/place-order';
 
 @Component({
   selector: 'page-addresslist',
@@ -20,13 +21,15 @@ export class AddresslistPage {
     });
   }
 
-  addAddress(){
-    this.navCtrl.setRoot(AddressPage);
+  public backToPlaceOrder(){
+    this.navCtrl.setRoot(PlaceOrderPage);
   }
 
-  SelectedAddress(){
-      console.log(this.addressList.selectedAddress+" is the selected address");
-      this.navCtrl.setRoot(AddressPage);
+  public SelectedAddress(addressDetails:string){
+      console.log(addressDetails +" is the selected address");
+      this.navCtrl.setRoot(PlaceOrderPage, {
+        Param3 : addressDetails
+      });
   }
 
   ionViewDidLoad() {

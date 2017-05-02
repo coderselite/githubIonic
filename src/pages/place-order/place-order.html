@@ -7,102 +7,131 @@
   </ion-navbar>
 </ion-header>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">  
-<ion-content padding>
-<!DOCTYPE html>
-<html>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <form [formGroup]="placeOrderForm" novalidate (ngSubmit)="save(placeOrderForm)">
-            <div class="form-group row">
-              <ion-segment formControlName="orderType">
-                <label>Order Type</label>  
-                <ion-segment-button value="regular">
-                  Regular
-                </ion-segment-button>
-                <ion-segment-button value="express">
-                  Express
-                </ion-segment-button>
-              </ion-segment>
-            </div>
-            <div class="form-group row">
-              <label class="col" style="max-width: 100%">Pickup Date</label>
-              <ion-datetime #startdatepicker displayFormat="MMM DD" formControlName = "pickupDate" class="eventCal-datePicker active col label" style="max-width: 100%; border: 1px solid;"></ion-datetime>                             
-            </div>
-            <div class="form-group row">
-              <ion-segment formControlName="pickupTime">
-                <label>Pickup Time</label>  
-                <ion-segment-button value="08am-12am">
-                  08am-12am
-                </ion-segment-button>
-                <ion-segment-button value="12am-04am">
-                  12am-04am
-                </ion-segment-button>
-                <ion-segment-button value="04am-08am">
-                  04am-08am
-                </ion-segment-button>
-              </ion-segment>
-            </div>
-            <div class="form-group row">               
-              <label class="col" style="max-width: 100%">Delivery Date</label>
-              <ion-datetime displayFormat="MMM DD" formControlName = "deliveryDate" class="col" style="max-width: 100%"></ion-datetime>                            
-            </div>
-            <div class="form-group row">
-              <ion-segment formControlName="deliveryTime">
-                <label> Delivery Time</label>  
-                <ion-segment-button value="08am-12am">
-                  08am-12am
-                </ion-segment-button>
-                <ion-segment-button value="12am-04am">
-                  12am-04am
-                </ion-segment-button>
-                <ion-segment-button value="04am-08am">
-                  04am-08am
-                </ion-segment-button>
-              </ion-segment>
-            </div>
-            <div class="form-group row">
-              <label class="col" style="max-width: 100%">Promocode</label>
-              <input type="text" class="col form-control" formControlName="promocode" style="max-width: 100%">                  
-            </div>              
-            <div formArrayName="catalogs">
-              <div *ngFor="let catalog of placeOrderForm.controls.catalogs.controls; let i=index" class="panel panel-default">
-                  <div>
-                      <span class="glyphicon glyphicon-remove pull-right" *ngIf="placeOrderForm.controls.catalogs.controls.length > 1" (click)="removeCatalog(i)"></span>
-                  </div>
-                  <div> 
-                    <div [formGroupName]="i" class=" row panel-body demo">                
-                        <div class="form-group col" style="max-width: 100%">
-                            <label>Catalog</label>
-                            <ion-select class="form-control" formControlName="catalog_id">
-                              <ion-option *ngFor="let catalog of catalogs" ng-value= catalog.id > {{ catalog.name }} </ion-option>
-                            </ion-select>                            
-                        </div>
-                        <div class="form-group col" style="max-width: 30%">
-                            <label>Quantity</label>
-                            <input type="text" class="form-control" formControlName="quantity">                            
-                        </div>
-                    </div>
-                  </div>
-              </div>        
-              <div class="margin-20 row form-group">
-                <a (click)="addCatalog()" style="cursor: default">
-                  Add another catalog +
-                </a>
+
+
+<body ng-app="starter">
+  <ion-content scroll="false">
+    <section class="home-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <form [formGroup]="placeOrderForm" novalidate (ngSubmit)="save(placeOrderForm)">
+              
+                <div class="form-group row">
+                  <ion-segment formControlName="orderType">
+                    <label>Order Type</label>  
+                    <ion-segment-button value="regular">
+                      Regular
+                    </ion-segment-button>
+                    <ion-segment-button value="express">
+                      Express
+                    </ion-segment-button>
+                  </ion-segment>
+                </div>
+              
+              <div class="form-group row">
+                <label class="col" style="max-width: 100%">Pickup Date</label>
+                <ion-datetime #startdatepicker displayFormat="MMM DD" formControlName = "pickupDate" class="eventCal-datePicker active col label" style="max-width: 100%; border: 1px solid;"></ion-datetime>                             
               </div>
-            </div>
-            <div class="margin-20 row form-group">
-              <button  class="btn btn-primary pull-right" [disabled]="!placeOrderForm.valid">Add Address</button>
-            </div>
-            <div class="margin-20 row form-group">
-              <button type="submit" class="btn btn-primary pull-right" [disabled]="!placeOrderForm.valid">Place Order</button>
-            </div>
-          </form>
+              <div class="form-group row">
+                <ion-segment formControlName="pickupTime">
+                  <label>Pickup Time</label>  
+                  <ion-segment-button value="08am-12am">
+                    08am-12am
+                  </ion-segment-button>
+                  <ion-segment-button value="12am-04am">
+                    12am-04am
+                  </ion-segment-button>
+                  <ion-segment-button value="04am-08am">
+                    04am-08am
+                  </ion-segment-button>
+                </ion-segment>
+              </div>
+              <div class="form-group row">               
+                <label class="col" style="max-width: 100%">Delivery Date</label>
+                <ion-datetime displayFormat="MMM DD" formControlName = "deliveryDate" class="col" style="max-width: 100%"></ion-datetime>                            
+              </div>
+              <div class="form-group row">
+                <ion-segment formControlName="deliveryTime">
+                  <label> Delivery Time</label>  
+                  <ion-segment-button value="08am-12am">
+                    08am-12am
+                  </ion-segment-button>
+                  <ion-segment-button value="12am-04am">
+                    12am-04am
+                  </ion-segment-button>
+                  <ion-segment-button value="04am-08am">
+                    04am-08am
+                  </ion-segment-button>
+                </ion-segment>
+              </div>
+              <div >
+                <label class="row" style="max-width: 100%">Promocode</label>
+                <input type="text" class="row form-control" formControlName="promocode" style="max-width: 100%">                  
+              </div>              
+              <div class="row" formArrayName="catalogs">
+                <div *ngFor="let catalog of placeOrderForm.controls.catalogs.controls; let i=index" class="panel panel-default">
+                    <div>
+                        <span class="glyphicon glyphicon-remove pull-right" *ngIf="placeOrderForm.controls.catalogs.controls.length > 1" (click)="removeCatalog(i)"></span>
+                    </div>
+                    <div> 
+                      <div [formGroupName]="i" class=" row panel-body demo">                
+                          <div class="form-group col" style="max-width: 100%">
+                              <label>Catalog</label>
+                              <ion-select class="form-control" formControlName="catalog_id">
+                                <ion-option *ngFor="let catalog of catalogs" ng-value= catalog.id > {{ catalog.name }} </ion-option>
+                              </ion-select>                            
+                          </div>
+                          <div class="form-group col" style="max-width: 30%">
+                              <label>Quantity</label>
+                              <input type="text" class="form-control" formControlName="quantity">                            
+                          </div>
+                      </div>
+                    </div>
+                </div> 
+                <div class="margin-20 row form-group">
+                  <a (click)="addCatalog()" style="cursor: default">
+                    Add another catalog +
+                  </a>
+                </div>
+              </div>
+                <div>
+                  <label>Address</label>
+                  <ion-card>                   
+                    <ion-card-content>
+                      <p>{{this.addressDetails}}</p>
+                    </ion-card-content>
+                    <ion-row>
+                      <ion-col>
+                        <button ion-button icon-left clear small (click)="addAddress()">
+                          <ion-icon name="create"></ion-icon>
+                          <div>Change Address</div>
+                        </button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </div> 
+
+                <div>
+                 <ion-row>
+                    <ion-col class="signup-col">
+                      <button ion-button full (click)="addAddress()" >Address</button>                      
+                    </ion-col>
+                  </ion-row>
+                </div> 
+                <div>
+                 <ion-row>
+                    <ion-col class="signup-col">
+                      <button ion-button type="submit" full (click)="addAddress()" [disabled]="!placeOrderForm.valid">Place Order</button>
+                    </ion-col>
+                  </ion-row>
+                </div> 
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </body>
-</html>
-</ion-content>
+    </section>
+  </ion-content>
+</body>
+
        

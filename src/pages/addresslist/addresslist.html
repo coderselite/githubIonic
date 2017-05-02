@@ -10,44 +10,22 @@
 
 
 
-  <ion-content padding>
-    
-          <button onclick="SelectedAddress()">
-            <ion-card *ngFor="let userAddress of addresses">
-              <ion-card-content >
-                {{ userAddress.address }}
-              </ion-card-content>
-            </ion-card>
-          </button>
-          <!--<ion-row>
-            <ion-col class="signup-col">
-              <button ion-button class="submit-btn " full type="submit" (click)="addAddress()">ADD ADDRESS</button>
-            </ion-col>
-          </ion-row>-->
-
-    <!--<button>
-      <ion-card *ngFor="let userAddress of addresses">
-        <ion-card-content [(ngModel)]="selectedAddress">
-          {{ userAddress.address }}
-        </ion-card-content>
-      </ion-card>
-    </button>
-    <ion-row>
-      <ion-col class="signup-col">
-        <button ion-button class="submit-btn " full type="submit" (click)="addAddress()">ADD ADDRESS</button>
-      </ion-col>
-    </ion-row>-->
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <button>
+        <h3>Select your address</h3>
+        <ion-card *ngFor="let userAddress of addresses"  (click)="SelectedAddress(userAddress.address)">
+          <ion-card-content >
+            {{ userAddress.address }}
+          </ion-card-content>
+        </ion-card>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="signup-col">
+      <button ion-button class="submit-btn " full type="submit" (click)="backToPlaceOrder()">ADD ADDRESS</button>
+    </ion-col>
+  </ion-row>          
 </ion-content>
-
-<!--<ion-list radio-group inset >
-            <ion-item *ngFor="let userAddress of addresses" >
-              <ion-label>
-                <ion-card >
-                  <ion-card-content >
-                    {{ userAddress.address }}
-                  </ion-card-content>
-                </ion-card>
-              </ion-label>
-              <ion-radio value= userAddress.address ></ion-radio>              
-            </ion-item>
-          </ion-list>-->
